@@ -2,7 +2,4 @@
 C:\Users\guo_h\source\repos\LightConnectionPool\LightConnectionPool\LightConnectionPool.cpp(28,29): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
 C:\Users\guo_h\source\repos\LightConnectionPool\LightConnectionPool\LightConnectionPool.cpp(33,35): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
 C:\Users\guo_h\source\repos\LightConnectionPool\LightConnectionPool\LightConnectionPool.cpp(17,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  main.cpp
-  正在生成代码...
-LightConnectionPool.obj : error LNK2019: 无法解析的外部符号 "private: void __cdecl ConnectionPool::produceConnectionTask(void)" (?produceConnectionTask@ConnectionPool@@AEAAXXZ)，函数 "private: __cdecl ConnectionPool::ConnectionPool(void)" (??0ConnectionPool@@AEAA@XZ) 中引用了该符号
-C:\Users\guo_h\source\repos\LightConnectionPool\x64\Debug\LightConnectionPool.exe : fatal error LNK1120: 1 个无法解析的外部命令
+  LightConnectionPool.vcxproj -> C:\Users\guo_h\source\repos\LightConnectionPool\x64\Debug\LightConnectionPool.exe

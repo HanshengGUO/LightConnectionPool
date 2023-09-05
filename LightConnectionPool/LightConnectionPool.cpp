@@ -105,3 +105,32 @@ void ConnectionPool::produceConnectionTask() {
 		cv.notify_all();
 	}
 }
+
+shared_ptr<Connection> ConnectionPool::getConnection() {
+	unique_lock<mutex> lock(_queueMutex);
+	while (_ConnectionQueue.empty()) {
+		// sleep
+		// 等待queue中出现可用的连接
+		if (cv.wait_for(lock, chrono::milliseconds(_connectionTimeout)) == cv_status::timeout) {
+			if (_ConnectionQueue.empty()) {
+				LOG("Failed: TimeOut on waiting for connection process");
+				return nullptr;
+			}
+		}
+	}
+	/*
+		shared_ptr智能指针析构时，会把connection资源自动删除，相当于调用connection的析构函数
+		这里需要自定义shared_ptr的释放资源方式，把connection归还到queue中。
+	*/
+	shared_ptr<Connection> sp(_ConnectionQueue.front(),
+		[&](Connection* pcon) {
+			// 这里是在服务器线程调用，考虑线程安全 
+			unique_lock<mutex> lock(_queueMutex);
+			_ConnectionQueue.push(pcon);
+		}
+	);
+	_ConnectionQueue.pop();
+	cv.notify_all(); // 消费结束后通知其他(生产者)线程
+	
+	return sp;
+}
