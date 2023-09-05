@@ -44,7 +44,7 @@ bool ConnectionPool::loadConfigFile() {
 			_username = value;
 		}
 		else if (key == "password") {
-			_username = value;
+			_password = value;
 		}
 		else if (key == "dbname") {
 			_dbname = value;
@@ -68,13 +68,19 @@ bool ConnectionPool::loadConfigFile() {
 // 构造连接池实例
 ConnectionPool::ConnectionPool() {
 	if (!loadConfigFile()) {
+		LOG("Failed to read from config file, default to mysql.ini");
 		return;
 	}
+
+
 
 	// 创建初始数量连接
 	for (int i = 0; i < _initSize; i++) {
 		Connection* p = new Connection();
-		p->connect(_ip, _port, _username, _password, _dbname);
+		if (!p->connect(_ip, _port, _username, _password, _dbname)) {
+			LOG("Connection failed to mysql database!");
+			return;
+		}
 		p->refreshAliveTime();
 		_ConnectionQueue.push(p);
 		_connectionCnt++;

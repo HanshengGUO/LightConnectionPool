@@ -22,6 +22,7 @@ bool Connection::connect(string ip, unsigned short port, string user, string pas
 		password.c_str(), dbname.c_str(), port, nullptr, 0);
 	return p != nullptr;
 }
+
 // 更新操作 insert、delete、update
 bool Connection::update(string sql)
 {
@@ -32,6 +33,7 @@ bool Connection::update(string sql)
 	}
 	return true;
 }
+
 // 查询操作 select
 MYSQL_RES* Connection::query(string sql)
 {

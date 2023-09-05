@@ -1,5 +1,2 @@
-﻿  LightConnectionPool.cpp
-C:\Users\guo_h\source\repos\LightConnectionPool\LightConnectionPool\LightConnectionPool.cpp(28,29): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-C:\Users\guo_h\source\repos\LightConnectionPool\LightConnectionPool\LightConnectionPool.cpp(33,35): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-C:\Users\guo_h\source\repos\LightConnectionPool\LightConnectionPool\LightConnectionPool.cpp(17,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+﻿  Connection.cpp
   LightConnectionPool.vcxproj -> C:\Users\guo_h\source\repos\LightConnectionPool\x64\Debug\LightConnectionPool.exe
