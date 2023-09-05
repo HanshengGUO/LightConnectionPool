@@ -32,6 +32,9 @@ private:
 	// 运行在独立的线程中，专门负责生产新连接
 	void produceConnectionTask();
 
+	// 扫描空闲线程
+	void scanConnectionTask();
+
 	string _ip;
 	unsigned short _port;
 	string _username;

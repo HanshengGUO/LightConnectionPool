@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -32,7 +33,13 @@ public:
 	// 查询操作 select
 	MYSQL_RES* query(string sql);
 
+	// 刷新空闲的起始时间点
+	void refreshAliveTime() { _alivetime = clock(); }
+	// 返回存活时间
+	clock_t getAliveTime()const { return clock() - _alivetime; }
+
 private:
 	MYSQL *_conn;
+	clock_t _alivetime; // 记录进入空闲状态（进入队列）的时间
 
 };
